@@ -5,7 +5,10 @@ public class Vertex<V> {
         this.data = data;
         this.adjacentVertices = new HashMap<>();
     }
-
+    public void addAdjacentVertex(Vertex<V> destination, double weight) {//Adds an adjacent vertex with the given weight
+        adjacentVertices.put(destination, weight);
+    }
     public V getData() {//returns the data associated with this vertex
         return data;
-    }}
+    }
+}
