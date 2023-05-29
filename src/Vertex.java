@@ -11,4 +11,8 @@ public class Vertex<V> {
     public V getData() {//returns the data associated with this vertex
         return data;
     }
+    public Map<Vertex<V>, Double> getAdjacentVertices() {
+        return adjacentVertices; // Returns the map of adjacent vertices and their weights
+    }
+
 }
