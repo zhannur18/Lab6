@@ -8,6 +8,9 @@ public class Vertex<V> {
     public void addAdjacentVertex(Vertex<V> destination, double weight) {//Adds an adjacent vertex with the given weight
         adjacentVertices.put(destination, weight);
     }
+    public void removeAdjacentVertex(Vertex<V> destination){
+        map.remove(destination);//edge removal
+    }
     public V getData() {//returns the data associated with this vertex
         return data;
     }
