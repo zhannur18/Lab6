@@ -5,9 +5,11 @@ public class Vertex<V> {
         this.data = data;
         this.adjacentVertices = new HashMap<>();
     }
+
     public void addAdjacentVertex(Vertex<V> destination, double weight) {//Adds an adjacent vertex with the given weight
         adjacentVertices.put(destination, weight);
     }
+
     public void removeAdjacentVertex(Vertex<V> destination){
         map.remove(destination);//edge removal
     }
