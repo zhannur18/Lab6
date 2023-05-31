@@ -20,4 +20,5 @@ public class Edge<Vertex> {
     public double getWeight() {
         return weight;
 
+
     }}
