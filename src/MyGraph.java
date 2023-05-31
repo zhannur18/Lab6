@@ -46,4 +46,19 @@ public class MyGraph {
         graph.get(destination).remove(source);// Removes the source vertex from the list of neighbors of the destination vertex in the graph
 
     }
+    public boolean hasEdge(Vertex<V> source, Vertex<V> destination) {
+        if (!graph.containsKey(source) || !graph.containsKey(destination)) {  // Check if both source and destination vertices exist in the graph
+            throw new IllegalArgumentException("Vertex not found in the graph.");  // Throw an exception if any of the vertices is not found
+        }
+
+        return graph.get(source).contains(destination);  // Return whether the source vertex's adjacency list contains the destination vertex
+    }
+
+    public List<Vertex<V>> getNeighbours(Vertex<V> vertex) {
+        if (!graph.containsKey(vertex)) {
+            throw new IllegalArgumentException("Vertex not found in the graph.");
+        }
+
+        return graph.get(vertex);
+    }
 }
