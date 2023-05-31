@@ -1,0 +1,13 @@
+LAB6
+
+The `Vertex` class represents a vertex in the graph. It has a generic type `V` to represent the data stored in each vertex. It contains an instance variable `data` to store the data, and a `Map` called `adjacentVertices` to store the adjacent vertices along with their corresponding weights. The `addAdjacentVertex` method adds an adjacent vertex with a given weight to the `adjacentVertices` map. The `getAdjacentVertices` method returns the map of adjacent vertices.
+
+The `MyGraph` class represents the weighted graph itself. It uses a `Map` called `graph` to store the vertices and their adjacent vertices. The `addVertex` method adds a vertex to the graph. The `addEdge` method adds an edge between two vertices with a given weight. It throws an `IllegalArgumentException` if either of the vertices is not found in the graph. The `printGraph` method prints the graph by iterating over the vertices and their adjacent vertices. The `removeEdge` method removes an edge between two vertices. The `hasEdge` method checks if an edge exists between two vertices. The `getNeighbours` method returns a list of adjacent vertices for a given vertex.
+
+The `BFS` method performs a breadth-first search traversal starting from a given vertex. It uses a `Set` called `visited` to keep track of visited vertices and a `Queue` called `queue` for the traversal. It prints the data of each visited vertex and enqueues its unvisited neighbors until the queue becomes empty.
+
+The `Dijkstra` method implements Dijkstra's algorithm to find the shortest path from a source vertex to all other vertices in the graph. It uses a `Map` called `distances` to store the shortest distances from the source vertex, a `Map` called `previous` to store the previous vertex in the shortest path, and a `PriorityQueue` called `queue` to efficiently retrieve the vertex with the minimum distance. It initializes the distances to infinity except for the source vertex which is set to 0. It iteratively updates the distances and previous vertices until all vertices are visited. Finally, it prints the shortest distances from the source vertex to all other vertices.
+
+The `Main` class is used to demonstrate the usage of the graph. It creates a `MyGraph` object with vertices representing strings "A" to "E". It adds edges between the vertices with corresponding weights. Then it calls the `printGraph` method to display the graph.
+
+Overall, this code provides a clear and concise implementation of a weighted graph along with methods for adding vertices, edges, performing traversals, and finding the shortest path using Dijkstra's algorithm.
