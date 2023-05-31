@@ -30,4 +30,20 @@ public class MyGraph {
             System.out.println();
         }
     }
+    public void removeEdge(Vertex<V> source, Vertex<V> destination) {//Removes an edge between two vertices in the graph.
+
+        if (!graph.containsKey(source)) {
+            throw new IllegalArgumentException("Vertex not found in the graph.");
+        } else if (!graph.containsKey(destination)) {
+            throw new IllegalArgumentException("Vertex not found in the graph.");
+        }
+
+        source.getAdjacentVertices().remove(destination);// Removes the destination vertex from the adjacent vertices of the source vertex
+        destination.getAdjacentVertices().remove(source);// Removes the source vertex from the adjacent vertices of the destination vertex
+
+
+        graph.get(source).remove(destination);// Removes the destination vertex from the list of neighbors of the source vertex in the graph
+        graph.get(destination).remove(source);// Removes the source vertex from the list of neighbors of the destination vertex in the graph
+
+    }
 }
