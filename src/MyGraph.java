@@ -85,5 +85,43 @@ public class MyGraph {
             }
         }
     }
+    public void Dijkstra(Vertex<V> source) {
+        if (!graph.getGraph().containsKey(source)) {  // Check if the source vertex exists in the graph
+            throw new IllegalArgumentException("Vertex not found in the graph.");  // Throw an exception if the source vertex is not found
+        }
+
+        Map<Vertex<V>, Double> distances = new HashMap<>();
+        Map<Vertex<V>, Vertex<V>> previous = new HashMap<>();  //a map to store previous vertices in the shortest paths
+        PriorityQueue<Vertex<V>> queue = new PriorityQueue<>(Comparator.comparingDouble(distances::get));  // Create a priority queue based on distances
+
+        for (Vertex<V> vertex : graph.getGraph().keySet()) {  // Initialize distances and previous maps
+            distances.put(vertex, Double.POSITIVE_INFINITY);
+            previous.put(vertex, null);
+        }
+
+        distances.put(source, 0.0);  // Set the distance of the source vertex to 0
+        queue.add(source);  // Add the source vertex to the priority queue
+
+        while (!queue.isEmpty()) {
+            Vertex<V> current = queue.poll();  // Retrieve the vertex with the smallest distance from the priority queue
+
+            for (Map.Entry<Vertex<V>, Double> entry : current.getAdjacentVertices().entrySet()) {  // Iterate over the adjacent vertices of the current vertex
+                Vertex<V> neighbor = entry.getKey();
+                double weight = entry.getValue();
+                double distance = distances.get(current) + weight;  // Calculate the distance to the neighbor through the current vertex
+
+                if (distance < distances.get(neighbor)) {  // If the calculated distance is smaller than the current distance to the neighbor
+                    distances.put(neighbor, distance);
+                    previous.put(neighbor, current);  // Set the previous vertex in the shortest path to the neighbor
+                    queue.remove(neighbor);  // Updateting priority in the queue by removing and re-adding the neighbor
+                    queue.add(neighbor);
+                }
+            }
+        }
+
+        for (Vertex<V> vertex : distances.keySet()) {
+            System.out.println("Distance from " + source.getData() + " to " + vertex.getData() + ": " + distances.get(vertex));
+        }
+    }
 
 }
