@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.*;
 
 public class MyGraph {
     private Map<Vertex<V>, List<Edge<V>>> graph; // Map to store vertices and their associated edges
@@ -61,4 +62,28 @@ public class MyGraph {
 
         return graph.get(vertex);
     }
+    public void BFS(Vertex<V> start) {
+        if (!graph.getGraph().containsKey(start)) {  // Check if the start vertex exists in the graph
+            throw new IllegalArgumentException("Vertex not found in the graph.");
+        }
+
+        Set<Vertex<V>> visited = new HashSet<>();  // Create a set to store visited vertices
+        Queue<Vertex<V>> queue = new LinkedList<>();  // Create a queue for BFS traversal
+
+        visited.add(start);  // Mark the start vertex as visited
+        queue.add(start);  // Add the start vertex to the queue
+
+        while (!queue.isEmpty()) {
+            Vertex<V> current = queue.poll();  // Dequeue the vertex at the front of the queue
+            System.out.print(current.getData() + " ");  // Process the current vertex
+
+            for (Vertex<V> neighbor : graph.getNeighbours(current)) {  // Iterate over the neighbors of the current vertex
+                if (!visited.contains(neighbor)) {  // If the neighbor has not been visited
+                    visited.add(neighbor);  // Mark the neighbor as visited
+                    queue.add(neighbor);  // Add the neighbor to the queue for further traversal
+                }
+            }
+        }
+    }
+
 }
