@@ -1,9 +1,11 @@
+import java.util.ArrayList;
+
 public class Vertex<V> {
     private V data;
-    private Map<Vertex<V>, Double> adjacent Vertices;
+    private Map<Vertex<V>, Double> adjacentVertices;
     public Vertex(V data) {
         this.data = data;
-        this.adjacentVertices = new HashMap<>();
+        adjacentVertices = new HashMap<>();
     }
 
     public void addAdjacentVertex(Vertex<V> destination, double weight) {//Adds an adjacent vertex with the given weight
@@ -19,5 +21,25 @@ public class Vertex<V> {
     public Map<Vertex<V>, Double> getAdjacentVertices() {
         return adjacentVertices; // Returns the map of adjacent vertices and their weights
     }
+    public ArrayList<Vertex<V>> getNeighbours(){ // to get all the vertices that are connected to this
+        ArrayList<Vertex<V>> neighbours = new ArrayList<>(); // vertices are stores in ArrayList before returning
+        for(Vertex<V> vertex: adjacentVertices.keySet()) {
+            neighbours.add(vertex);
+        }
+        return neighbours;
+    }
 
+    public boolean hasEdge(Vertex<V> destination){
+        if (adjacentVertices.containsKey(destination)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+
+    public double getEdgeWeight(Vertex<V> neighbor) {
+        return adjacentVertices.get(neighbor);
+    }
 }
