@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.*;
 
-public class MyGraph {
+public class MyGraph<V> {
     private Map<Vertex<V>, List<Edge<V>>> graph; // Map to store vertices and their associated edges
 
 
@@ -16,8 +16,8 @@ public class MyGraph {
 
 
     public void addEdge(V sourceKey, V destinationKey, double weight) { // add the edges by entering key
-        Vertex<V> source = graph.get(sourceKey);
-        Vertex<V> destination = graph.get(destinationKey);
+        Vertex<V> source = (Vertex<V>) graph.get(sourceKey);
+        Vertex<V> destination = (Vertex<V>) graph.get(destinationKey);
         source.addAdjacentVertex(destination, weight);
         destination.addAdjacentVertex(source, weight);
     }
@@ -85,7 +85,7 @@ public class MyGraph {
             }
         }
     }
-    public void Dijkstra(Vertex<V> source) {
+    public void Dijkstra(int source) {
         if (!graph.getGraph().containsKey(source)) {  // Check if the source vertex exists in the graph
             throw new IllegalArgumentException("Vertex not found in the graph.");  // Throw an exception if the source vertex is not found
         }
@@ -94,7 +94,7 @@ public class MyGraph {
         Map<Vertex<V>, Vertex<V>> previous = new HashMap<>();  //a map to store previous vertices in the shortest paths
         PriorityQueue<Vertex<V>> queue = new PriorityQueue<>(Comparator.comparingDouble(distances::get));  // Create a priority queue based on distances
 
-        for (Vertex<V> vertex : graph.getGraph().keySet()) {  // Initialize distances and previous maps
+        for (Vertex<V> vertex : graph.getClass().keySet()) {  // Initialize distances and previous maps
             distances.put(vertex, Double.POSITIVE_INFINITY);
             previous.put(vertex, null);
         }

@@ -22,13 +22,6 @@ public class Main {
         graph.addEdge(v4, v5, 2); // Add an edge from v4 to v5 with weight 2
 
         graph.printGraph(); // Print the graph structure
-
-        BreadthFirstSearch<String> bfs = new BreadthFirstSearch<>(graph);
-        System.out.print("BFS traversal: ");
-        bfs.BFS(v1); // Perform Breadth First Search starting from v1
-        System.out.println();
-
-        DijkstraSearch<String> dijkstra = new DijkstraSearch<>(graph);
-        dijkstra.Dijkstra(v1); // Perform Dijkstra's algorithm starting from v1
+        graph.Dijkstra(0);
     }
 }
